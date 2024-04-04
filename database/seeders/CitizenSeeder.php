@@ -15,10 +15,10 @@ class CitizenSeeder extends Seeder
     {
         Citizen::factory(500)->create();
 
-        Citizen::factory(100)->coordinates1()->create();
-        Citizen::factory(100)->coordinates2()->create();
-        Citizen::factory(100)->coordinates3()->create();
-        Citizen::factory(100)->coordinates4()->create();
-        Citizen::factory(100)->coordinates5()->create();
+        Citizen::factory(100)->jardinPrincipal()->create();
+        Citizen::factory(100)->estadio()->create();
+        Citizen::factory(100)->parqueFundadores()->create();
+        Citizen::factory(100)->deportivaNorte()->create();
+        Citizen::factory(100)->xochipilli()->create();
     }
 }

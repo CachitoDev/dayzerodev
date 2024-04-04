@@ -9,5 +9,13 @@ class Citizen extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['curp', 'image_path', 'latitude', 'longitude'];
+    protected $fillable = ['curp', 'image_path', 'latitude', 'longitude', 'store_id'];
+
+    /**
+     *
+     */
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

@@ -24,48 +24,48 @@ class CitizenFactory extends Factory
         ];
     }
 
-    public function coordinates1()
+    public function jardinPrincipal()
     {
         return $this->state(function (array $attributes) {
             return [
-                'latitude' => 20.522425021497472,
-                'longitude' => -100.81402159537812,
+                'latitude' => 20.521932631611154,
+                'longitude' => -100.81404306296317,
             ];
         });
     }
 
-    public function coordinates2()
+    public function estadio()
     {
         return $this->state(function (array $attributes) {
             return [
-                'latitude' => 20.5358082801794,
-                'longitude' => -100.8182487566445,
+                'latitude' => 20.535366210076916,
+                'longitude' => -100.81829172063344,
             ];
         });
     }
 
 
-    public function coordinates3()
+    public function parqueFundadores()
     {
         return $this->state(function (array $attributes) {
             return [
-                'latitude' => 20.519169457293057,
-                'longitude' => -100.8291063384944,
+                'latitude' => 20.5180943257773,
+                'longitude' => -100.82923505131673,
             ];
         });
     }
 
-    public function coordinates4()
+    public function deportivaNorte()
     {
         return $this->state(function (array $attributes) {
             return [
-                'latitude' =>  20.54760306466664,
-                'longitude' => -100.81325984849376,
+                'latitude' =>  20.547793960137867,
+                'longitude' => -100.81328126296236,
             ];
         });
     }
 
-    public function coordinates5()
+    public function xochipilli()
     {
         return $this->state(function (array $attributes) {
             return [
