@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->prefix('citizens')->group(function () {
-    Route::post('check', [CitizenController::class, 'check']);
-    Route::post('register', [CitizenController::class, 'register']);
+    Route::post('/check', [CitizenController::class, 'check']);
+    Route::post('/register', [CitizenController::class, 'register']);
 });
