@@ -13,12 +13,12 @@ class CitizenSeeder extends Seeder
      */
     public function run(): void
     {
-        Citizen::factory(500)->create();
-
-        Citizen::factory(100)->jardinPrincipal()->create();
-        Citizen::factory(100)->estadio()->create();
-        Citizen::factory(100)->parqueFundadores()->create();
-        Citizen::factory(100)->deportivaNorte()->create();
-        Citizen::factory(100)->xochipilli()->create();
+        Citizen::factory(1000)->create();
+//
+//        Citizen::factory(100)->jardinPrincipal()->create();
+//        Citizen::factory(100)->estadio()->create();
+//        Citizen::factory(100)->parqueFundadores()->create();
+//        Citizen::factory(100)->deportivaNorte()->create();
+//        Citizen::factory(100)->xochipilli()->create();
     }
 }

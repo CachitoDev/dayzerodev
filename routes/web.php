@@ -23,6 +23,8 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+    Route::get('/v1/dashboard', [\App\Http\Controllers\DashboardController::class,'index'])->name('v1.dashboard');
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
