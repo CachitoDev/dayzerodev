@@ -22,7 +22,7 @@ class Citizen extends Model
         return $this->belongsTo(Store::class);
     }
 
-    public function getImageUrl()
+    public function getImageUrl(): string
     {
         return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
     }
