@@ -75,7 +75,7 @@
                 const cameras = await navigator.mediaDevices.enumerateDevices();
                 cameras.forEach(function(camera){
                     let rearCameraId = null;
-                    if (camera.kind === 'videoinput' && device.label.toLowerCase().includes('back')) {
+                    if (camera.kind === 'videoinput' && camera.label.toLowerCase().includes('back')) {
                         rearCameraId = camera.deviceId;
                     }
                     if(rearCameraId){
