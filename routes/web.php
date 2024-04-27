@@ -47,3 +47,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('stores/{store}', [\App\Http\Controllers\StoreController::class, 'show'])->name('stores.show');
     Route::patch('stores/{store}',[\App\Http\Controllers\StoreController::class,'update'])->name('stores.update');
 });
+
+Route::get('redeem',[\App\Http\Controllers\RedeemController::class,'create'])->name('redeem.create');
