@@ -48,7 +48,7 @@
                         @foreach ($citizens as $citizen)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $citizen->id }}
+                                    <a target="_blank" href="{{ $citizen->getImageUrl() }}">{{ $citizen->id }}</a>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $citizen->curp }}
