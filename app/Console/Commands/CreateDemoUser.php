@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Database\Seeders\DefaultUserSeeder;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CreateDemoUser extends Command
 {
