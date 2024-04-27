@@ -43,7 +43,7 @@ class CitizenController extends Controller
 
         $citizen = Citizen::create([
             'curp'       => $curp,
-            'image_path' => Storage::disk('s3')->put('images', $request->image),
+            'image_path' => Storage::disk('s3')->put('images', $request->image_path),
             'latitude'   => $lat,
             'longitude'  => $long,
             'store_id'   => $nearbyStore
