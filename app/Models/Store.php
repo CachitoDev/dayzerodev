@@ -29,6 +29,14 @@ class Store extends Model
     }
 
     /**
+     *
+     */
+    public static function whereCords($lat, $long)
+    {
+        return Store::whereRaw("st_contains(geo, ST_SetSRID(ST_POINT(".$long.",".$lat."), 900913))")->first();
+    }
+
+    /**
      * Generate the geometry of the store.
      *
      * @return void

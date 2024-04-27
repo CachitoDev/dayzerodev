@@ -25,12 +25,12 @@
                     </label>
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Latitud</span>
-                        <input id="latitude" required name="latitude" type="number"
+                        <input id="latitude" required name="latitude" type="text"
                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
                     </label>
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Longitud</span>
-                        <input id="longitude" required name="longitude" type="number"
+                        <input id="longitude" required name="longitude" type="text"
                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
                     </label>
                     <label class="block text-sm">
