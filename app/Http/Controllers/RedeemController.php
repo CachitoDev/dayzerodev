@@ -18,11 +18,11 @@ class RedeemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'curp'          => ['required', 'string'],
+            'curp'          => ['required', 'string',, 'unique:citizens'],
             'latitude'      => ['required'],
             'longitude'     => ['required'],
             'capturedImage' => ['required', 'string']
-        ]);
+        ],['curp' => 'Ya has canjeado un código']);
 
         $curp = $request->curp;
         $lat = $request->latitude;
