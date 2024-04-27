@@ -1,0 +1,68 @@
+name: Deploy production
+on:
+  push:
+    branches: [ main ]
+jobs:
+  linux_tests:
+    env:
+      DB_PORT: 33306
+      DB_USERNAME: root
+    runs-on: ubuntu-20.04
+
+    services:
+      memcached:
+        image: memcached:1.6-alpine
+        ports:
+          - 11211:11211
+      redis:
+        image: redis:5.0
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [ '8.2']
+        stability: [prefer-stable]
+
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: setup framework directory
+        run: mkdir -p storage/framework/{sessions,views,cache}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl
+          tools: composer:v2
+          coverage: none
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-dev
+
+      - name: Install Vapor CLI Globally
+        run: composer global require laravel/vapor-cli --prefer-dist --no-interaction --no-progress
+
+      - name: Deploy to production with Laravel Vapor
+        continue-on-error: false
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+        if: contains(github.ref, 'develop')
+        run: vapor deploy staging
+
