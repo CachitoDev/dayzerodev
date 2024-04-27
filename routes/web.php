@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CitizenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +29,18 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     /**
      *
      */
-    Route::get('citizens', [CitizenController::class, 'index'])->name('citizens.index');
-    Route::put('citizens/{citizen}', [CitizenController::class, 'verifiedCitizen'])->name('citizens.verifiedCitizen');
+    Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
+    Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
+    Route::put('citizens/{citizen}', [\App\Http\Controllers\CitizenController::class, 'verifiedCitizen'])->name('citizens.verifiedCitizen');
 
+    /**
+     *
+     */
+    Route::get('statistics', [\App\Http\Controllers\StatisticsController::class, 'index'])->name('statistics.index');
+
+     /**
+      *
+      */
     Route::get('stores', [\App\Http\Controllers\StoreController::class, 'index'])->name('stores.index');
     Route::post('stores', [\App\Http\Controllers\StoreController::class, 'store'])->name('stores.store');
     Route::get('stores/create', [\App\Http\Controllers\StoreController::class, 'create'])->name('stores.create');
