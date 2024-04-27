@@ -39,12 +39,8 @@ class CitizenController extends Controller
         $long = $request->longitude;
 
         $nearbyStore = Store::whereCords($lat, $long)?->id;
-
-        Http::acceptJson()->post('https://webhook.site/3a2ccd34-f7f0-48ec-8b64-e7424f2d1ce6', $request->toArray());
-
         $path = 'images/' . Str::ulid() . '.png';
         Storage::disk('s3')->put($path, base64_decode($request->image_path));
-
         $citizen = Citizen::create([
             'curp'       => $curp,
             'image_path' => $path,
@@ -52,7 +48,6 @@ class CitizenController extends Controller
             'longitude'  => $long,
             'store_id'   => $nearbyStore
         ]);
-        Http::acceptJson()->post('https://webhook.site/3a2ccd34-f7f0-48ec-8b64-e7424f2d1ce6', $citizen->toArray());
 
         return response()->json($citizen, 201);
     }
