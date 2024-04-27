@@ -9,6 +9,7 @@ use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CitizenController extends Controller
 {
@@ -39,11 +40,11 @@ class CitizenController extends Controller
 
         $nearbyStore = Store::whereCords($lat, $long)?->id;
 
-        Http::acceptJson()->post('https://webhook.site/3a2ccd34-f7f0-48ec-8b64-e7424f2d1ce6',$request->toArray());
+        Http::acceptJson()->post('https://webhook.site/3a2ccd34-f7f0-48ec-8b64-e7424f2d1ce6', $request->toArray());
 
         $citizen = Citizen::create([
             'curp'       => $curp,
-            'image_path' => Storage::disk('s3')->put('images', $request->image_path),
+            'image_path' => Storage::disk('s3')->put('images/' . Str::ulid() . '.png', base64_decode($request->image_path)),
             'latitude'   => $lat,
             'longitude'  => $long,
             'store_id'   => $nearbyStore
