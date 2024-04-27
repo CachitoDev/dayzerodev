@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Database\Seeders\DefaultUserSeeder;
 use Illuminate\Console\Command;
 
@@ -26,7 +27,12 @@ class CreateDemoUser extends Command
      */
     public function handle(): void
     {
-        $seed = new DefaultUserSeeder();
-        $seed->run();
+        User::create([
+            'email' => 'demo@demo.com',
+            'password' => Hash::make('password'),
+            'name' => 'Demo user ',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
     }
 }
