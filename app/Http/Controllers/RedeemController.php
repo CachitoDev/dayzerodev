@@ -18,7 +18,7 @@ class RedeemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'curp'          => ['required', 'string',, 'unique:citizens'],
+            'curp'          => ['required', 'string','unique:citizens'],
             'latitude'      => ['required'],
             'longitude'     => ['required'],
             'capturedImage' => ['required', 'string']
