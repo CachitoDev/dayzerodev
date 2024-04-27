@@ -2,6 +2,7 @@ id: 60395
 name: dayzerodev
 environments:
     production:
+        storage: dayzerodev
         database: dayzero-prod
         memory: 1024
         cli-memory: 512
