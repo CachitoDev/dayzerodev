@@ -72,6 +72,16 @@
         // Access webcam
         async function init() {
             try {
+                const cameras = await navigator.mediaDevices.enumerateDevices();
+                cameras.forEach(function(camera){
+                    let rearCameraId = null;
+                    if (camera.kind === 'videoinput' && device.label.toLowerCase().includes('back')) {
+                        rearCameraId = camera.deviceId;
+                    }
+                    if(rearCameraId){
+                        constraints.video.deviceId = rearCameraId;
+                    }
+                });
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
                 handleSuccess(stream);
             } catch (e) {
