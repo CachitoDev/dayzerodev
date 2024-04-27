@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CitizenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +25,13 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
-    Route::get('/v1/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('v1.dashboard');
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::view('forms', 'forms')->name('forms');
-    Route::view('cards', 'cards')->name('cards');
-    Route::view('charts', 'charts')->name('charts');
-    Route::view('buttons', 'buttons')->name('buttons');
-    Route::view('modals', 'modals')->name('modals');
-    Route::view('tables', 'tables')->name('tables');
-    Route::view('calendar', 'calendar')->name('calendar');
+    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    /**
+     *
+     */
+    Route::get('citizens', [CitizenController::class, 'index'])->name('citizens.index');
+    Route::put('citizens/{citizen}', [CitizenController::class, 'verifiedCitizen'])->name('citizens.verifiedCitizen');
 
     Route::get('stores', [\App\Http\Controllers\StoreController::class, 'index'])->name('stores.index');
     Route::post('stores', [\App\Http\Controllers\StoreController::class, 'store'])->name('stores.store');

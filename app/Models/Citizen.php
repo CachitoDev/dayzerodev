@@ -9,7 +9,9 @@ class Citizen extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['curp', 'image_path', 'latitude', 'longitude', 'store_id'];
+    protected $fillable = [
+        'curp', 'image_path', 'latitude', 'longitude', 'store_id', 'verified'
+    ];
 
     /**
      *
