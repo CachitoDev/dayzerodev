@@ -24,6 +24,6 @@ class Citizen extends Model
 
     public function getImageUrl()
     {
-        Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
+        return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
     }
 }
