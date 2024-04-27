@@ -33,12 +33,14 @@
                         <!-- Webcam video snapshot -->
                         <canvas id="canvas" width="640" height="360" hidden></canvas>
 
+                        <select name="" id="camSelect">
+
+                        </select>
 
                         <button id="snap"
                                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                             {{ __('Capturar código') }}
                         </button>
-
 
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -46,8 +48,6 @@
                             <div class="text-center mt-5 mb-5">
                                 <img height="250" width="250" id="preview-image" alt="" hidden>
                             </div>
-
-
                             <input type="hidden" name="selfie" id="selfie">
                             <!-- You should use a button here, as the anchor is only used for the example  -->
                             <button
@@ -79,11 +79,18 @@
             try {
                 const cameras = await navigator.mediaDevices.enumerateDevices();
                 cameras.forEach(function (camera) {
-                    alert(camera.label.toLowerCase());
                     let rearCameraId = null;
-                    if (camera.kind === 'videoinput' && camera.label.toLowerCase().includes('back')) {
+                    if (camera.kind === 'videoinput') {
+                        let opt = document.createElement('option');
+                        opt.value = camera.deviceId;
+                        opt.innerHTML = camera.label;
+                        document.getElementById('camSelect').appendChild(opt);
                         rearCameraId = camera.deviceId;
                     }
+
+                    // if (camera.kind === 'videoinput' && camera.label.toLowerCase().includes('back')) {
+                    //     rearCameraId = camera.deviceId;
+                    // }
                     if (rearCameraId) {
                         constraints = {
                             audio: false,
@@ -118,9 +125,14 @@
             context.drawImage(video, 0, 0, 640, 360);
             img = document.getElementById('canvas').toDataURL('image/png');
             document.getElementById('selfie').value = img;
-
-
         });
+
+        document.getElementById('camSelect').addEventListener('change',
+            async function () {
+                alert('cambiar camera' + document.getElementById('camSelect').value);
+            },
+            false
+        );
     </script>
 
 </x-guest-layout>
