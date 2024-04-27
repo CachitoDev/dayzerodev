@@ -34,5 +34,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::view('tables', 'tables')->name('tables');
     Route::view('calendar', 'calendar')->name('calendar');
 
-    Route::get('geofences', [\App\Http\Controllers\GeofenceController::class, 'index']);
+    Route::get('stores', [\App\Http\Controllers\StoreController::class, 'index'])->name('stores.index');
+    Route::post('stores', [\App\Http\Controllers\StoreController::class, 'store'])->name('stores.store');
+    Route::get('stores/create', [\App\Http\Controllers\StoreController::class, 'create'])->name('stores.create');
+    Route::get('stores/{store}', [\App\Http\Controllers\StoreController::class, 'show'])->name('stores.show');
+    Route::patch('stores/{store}',[\App\Http\Controllers\StoreController::class,'update'])->name('stores.update');
 });

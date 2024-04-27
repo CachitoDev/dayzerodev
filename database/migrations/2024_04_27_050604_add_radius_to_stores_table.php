@@ -10,14 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('geofences', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->longText('geometric');
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('stores', function (Blueprint $table) {
+            $table->double('radius')->nullable();
+            $table->integer('estimated')->nullable();
         });
     }
 
@@ -26,6 +21,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('geofences');
+        Schema::table('stores', function (Blueprint $table) {
+            $table->dropColumn('radius');
+            $table->dropColumn('estimated');
+        });
     }
 };
