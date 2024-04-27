@@ -33,7 +33,6 @@ class CitizenController extends Controller
      */
     public function register(CitizenRegisterRequest $request)
     {
-
         $curp = $request->curp;
         $lat = $request->latitude;
         $long = $request->longitude;

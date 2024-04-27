@@ -44,9 +44,16 @@
 
                         <form method="POST" action="{{ route('redeem.store') }}">
                             @csrf
-
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Curp</span>
+                                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Ingresa tu curp" name="curp" value="{{ old('curp') }}" required autofocus />
+                            </label>
                             <!-- Input oculto para guardar la imagen en base64 -->
                             <input type="hidden" id="capturedImage" name="capturedImage">
+                            <input hidden id="latitude" name="latitude">
+                            <input hidden id="longitude" name="longitude">
+
+                            <small id="showMessageLoading">Estamos validando los cupones</small>
                             <!-- You should use a button here, as the anchor is only used for the example  -->
                             <button id="changeCodeButton"
                                     class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -60,7 +67,7 @@
         </div>
     </div>
     <script>
-        // document.getElementById('changeCodeButton').style.display = 'None';
+        document.getElementById('changeCodeButton').style.display = 'None';
         document.getElementById('showRecapture').style.display = 'None';
         // Obtener el elemento select y el botón de captura
         const camerasSelect = document.getElementById('cameras');
@@ -140,7 +147,34 @@
             document.getElementById('cameraView').style.display = 'block';
             document.getElementById('captureBtn').style.display = 'block';
             document.getElementById('show-image').style.display = 'none';
+        });
 
+
+
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+                        document.getElementById('latitude').value = latitude;
+                        document.getElementById('longitude').value = longitude;
+                        document.getElementById('showMessageLoading').innerText = 'Captura la imagen de tu cupón para canjearlo.';
+                    },
+                    (error) => {
+                        console.error('Error al obtener la ubicación:', error);
+                    }
+                );
+            } else {
+                console.error('Tu navegador no soporta la API de geolocalización.');
+            }
+        }
+
+        // Llamar a la función getLocation al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            getLocation();
         });
     </script>
 
