@@ -18,9 +18,9 @@ class CitizenController extends Controller
         $citizen = Citizen::where('curp', $curp)->first();
 
         if ($citizen) {
-            return response()->json(['registered' => true]);
+            return response()->json(['status' => false,'message' => 'Ya has canjeado tu cupón de descuento.']);
         } else {
-            return response()->json(['registered' => false]);
+            return response()->json(['status' => true,'message' => 'Felicidades, tienes un cupón de descuento para canjear.']);
         }
     }
 
