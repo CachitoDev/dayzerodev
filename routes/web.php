@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
-    Route::get('/v1/dashboard', [\App\Http\Controllers\DashboardController::class,'index'])->name('v1.dashboard');
+    Route::get('/v1/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('v1.dashboard');
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
@@ -33,4 +33,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::view('modals', 'modals')->name('modals');
     Route::view('tables', 'tables')->name('tables');
     Route::view('calendar', 'calendar')->name('calendar');
+
+    Route::get('geofences', [\App\Http\Controllers\GeofenceController::class, 'index']);
 });
