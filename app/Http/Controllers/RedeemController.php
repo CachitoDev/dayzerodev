@@ -29,7 +29,9 @@ class RedeemController extends Controller
         $long = $request->longitude;
         $nearbyStore = Store::whereCords($lat, $long)?->id;
         $path = 'images/' . Str::ulid() . '.png';
-        Storage::disk('s3')->put($path, base64_decode($request->capturedImage));
+
+        $image = str_replace('data:image/png;base64,','',$request->capturedImage);
+        Storage::disk('s3')->put($path, base64_decode($image));
         $citizen = Citizen::create([
             'curp'       => $curp,
             'image_path' => $path,
