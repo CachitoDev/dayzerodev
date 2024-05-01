@@ -17,9 +17,9 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                    @endif
 
-                        <!-- Selector de cámaras -->
+                    <!-- Selector de cámaras -->
                         <label for="cameras">Selecciona la camara a utilizar:</label>
                         <select id="cameras"></select>
 
@@ -46,7 +46,10 @@
                             @csrf
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Curp</span>
-                                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Ingresa tu curp" name="curp" value="{{ old('curp') }}" required autofocus />
+                                <input
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="Ingresa tu curp" name="curp" value="{{ old('curp') }}" required
+                                    autofocus/>
                             </label>
                             <!-- Input oculto para guardar la imagen en base64 -->
                             <input type="hidden" id="capturedImage" name="capturedImage">
@@ -148,8 +151,6 @@
             document.getElementById('captureBtn').style.display = 'block';
             document.getElementById('show-image').style.display = 'none';
         });
-
-
 
 
         function getLocation() {
