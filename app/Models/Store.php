@@ -18,7 +18,7 @@ class Store extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'latitude', 'longitude', 'geo', 'radius', 'estimated'];
+    protected $fillable = ['number', 'name', 'latitude', 'longitude', 'geo', 'radius', 'estimated'];
 
     /**
      *

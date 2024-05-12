@@ -46,4 +46,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('stores/create', [\App\Http\Controllers\StoreController::class, 'create'])->name('stores.create');
     Route::get('stores/{store}', [\App\Http\Controllers\StoreController::class, 'show'])->name('stores.show');
     Route::patch('stores/{store}',[\App\Http\Controllers\StoreController::class,'update'])->name('stores.update');
+    Route::get('stores-import', [\App\Http\Controllers\StoreController::class, 'import'])->name('store.import');
+    Route::post('stores-import', [\App\Http\Controllers\StoreController::class, 'importSave'])->name('store.importSave');
 });
