@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "laravel/vapor-cli": "^1.64",
         "laravel/vapor-core": "^2.37",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^2.0",

@@ -10,7 +10,7 @@ class Citizen extends Model
     use HasFactory;
 
     protected $fillable = [
-        'curp', 'image_path', 'latitude', 'longitude', 'store_id', 'verified'
+        'name', 'curp', 'phone', 'image_path', 'latitude', 'longitude', 'store_id', 'team_leader_id', 'verified'
     ];
 
     /**

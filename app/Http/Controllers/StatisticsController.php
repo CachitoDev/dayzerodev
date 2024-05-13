@@ -26,6 +26,7 @@ class StatisticsController extends Controller
                 ->count();
 
             $storeData = [
+                'number' => $store->number,
                 'name' => $store->name,
                 'estimated' => $estimated,
                 'citizens_count' => $citizensCount,

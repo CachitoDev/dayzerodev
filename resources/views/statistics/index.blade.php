@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         <p class="mb-2 text-sm uppercase font-medium text-gray-600 dark:text-gray-400">
-                            {{ $store['name'] }}
+                            {{ $store['number'] }}  {{ $store['name'] }}
                         </p>
                         <p class="text-md font-semibold text-gray-700 dark:text-gray-200">
                             {{ __('Estimado') }}: {{ $store['estimated'] }}

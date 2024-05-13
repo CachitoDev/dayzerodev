@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\StoreImport;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StoreController extends Controller
 {
@@ -67,5 +69,19 @@ class StoreController extends Controller
         $store->generateGeometry();
 
         return redirect()->route('stores.show', $store);
+    }
+
+    public function import()
+    {
+        return view('stores.import');
+    }
+
+    public function importSave(Request $request)
+    {
+        $file = $request->file('import_file');
+
+        Excel::import(new StoreImport, $file);
+
+        return redirect()->route('stores.index')->with('success', 'Tiendas importadas exitosamente.');
     }
 }

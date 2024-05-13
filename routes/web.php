@@ -30,8 +30,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
      *
      */
     Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
-    Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
     Route::put('citizens/{citizen}', [\App\Http\Controllers\CitizenController::class, 'verifiedCitizen'])->name('citizens.verifiedCitizen');
+    Route::get('citizens-import', [\App\Http\Controllers\CitizenController::class, 'import'])->name('citizens.import');
+    Route::post('citizens-import', [\App\Http\Controllers\CitizenController::class, 'importSave'])->name('citizens.importSave');
 
     /**
      *
@@ -46,4 +47,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('stores/create', [\App\Http\Controllers\StoreController::class, 'create'])->name('stores.create');
     Route::get('stores/{store}', [\App\Http\Controllers\StoreController::class, 'show'])->name('stores.show');
     Route::patch('stores/{store}',[\App\Http\Controllers\StoreController::class,'update'])->name('stores.update');
+    Route::get('stores-import', [\App\Http\Controllers\StoreController::class, 'import'])->name('store.import');
+    Route::post('stores-import', [\App\Http\Controllers\StoreController::class, 'importSave'])->name('store.importSave');
 });
