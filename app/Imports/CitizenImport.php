@@ -3,6 +3,8 @@
 namespace App\Imports;
 
 use App\Models\Citizen;
+use App\Models\Store;
+use App\Models\TeamLeader;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
@@ -18,12 +20,18 @@ class CitizenImport implements ToModel, WithHeadingRow, WithBatchInserts, WithCh
      */
     public function model(array $row)
     {
+        $store = Store::where('number', $row['store'])->first();
+        $store_id = $store ? $store->id : null;
+
+        $teamLeader = TeamLeader::where('name', $row['team_leader'])->first();
+        $team_leader_id = $teamLeader ? $teamLeader->id : null;
+
         return new Citizen([
             'name' => $row['name'],
             'curp' => $row['curp'],
             'phone' => $row['phone'],
-            'store_id' => 1,
-            'team_leader_id' => 1,
+            'store_id' => $store_id,
+            'team_leader_id' => $team_leader_id,
         ]);
     }
 

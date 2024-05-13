@@ -30,8 +30,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
      *
      */
     Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
-    Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
     Route::put('citizens/{citizen}', [\App\Http\Controllers\CitizenController::class, 'verifiedCitizen'])->name('citizens.verifiedCitizen');
+    Route::get('citizens-import', [\App\Http\Controllers\CitizenController::class, 'import'])->name('citizens.import');
+    Route::post('citizens-import', [\App\Http\Controllers\CitizenController::class, 'importSave'])->name('citizens.importSave');
 
     /**
      *

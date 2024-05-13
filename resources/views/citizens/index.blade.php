@@ -39,6 +39,7 @@
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">{{ __('Folio') }}</th>
+                            <th class="px-4 py-3">{{ __('Nombre') }}</th>
                             <th class="px-4 py-3">{{ __('CURP') }}</th>
                             <th class="px-4 py-3">{{ __('Estado') }}</th>
                             <th class="px-4 py-3">{{ __('Acciones') }}</th>
@@ -49,6 +50,9 @@
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">
                                     {{ $citizen->id }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $citizen->name }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $citizen->curp }}

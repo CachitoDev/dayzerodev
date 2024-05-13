@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidatedSearchRequest;
+use App\Imports\CitizenImport;
 use App\Models\Citizen;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CitizenController extends Controller
 {
@@ -22,7 +24,7 @@ class CitizenController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('citizen.index', ['citizens' => $citizens]);
+        return view('citizens.index', ['citizens' => $citizens]);
     }
 
     /**
@@ -33,5 +35,25 @@ class CitizenController extends Controller
         $citizen->update(['verified' => true]);
 
         return redirect()->back();
+    }
+
+    /**
+     *
+     */
+    public function import()
+    {
+        return view('citizens.import');
+    }
+
+    /**
+     *
+     */
+    public function importSave(Request $request)
+    {
+        $file = $request->file('import_file');
+
+        Excel::import(new CitizenImport, $file);
+
+        return redirect()->route('citizens.index')->with('success', 'Tiendas importadas exitosamente.');
     }
 }

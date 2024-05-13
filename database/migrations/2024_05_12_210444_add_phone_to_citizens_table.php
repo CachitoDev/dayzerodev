@@ -14,7 +14,11 @@ return new class extends Migration
     {
         Schema::table('citizens', function (Blueprint $table) {
             $table->string('name')->nullable();
+            $table->string('curp')->nullable()->change();
             $table->string('phone')->nullable();
+            $table->string('image_path')->nullable()->change();
+            $table->string('latitude')->nullable()->change();
+            $table->string('longitude')->nullable()->change();
             $table->foreignIdFor(TeamLeader::class)->nullable()->constrained();
         });
     }
@@ -27,6 +31,10 @@ return new class extends Migration
         Schema::table('citizens', function (Blueprint $table) {
             $table->dropForeign(['team_leader_id']);
             $table->dropColumn(['name', 'phone', 'team_leader_id']);
+            $table->string('curp')->nullable()->change();
+            $table->string('image_path')->nullable()->change();
+            $table->string('latitude')->nullable()->change();
+            $table->string('longitude')->nullable()->change();
         });
     }
 };
