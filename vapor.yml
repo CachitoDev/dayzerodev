@@ -1,5 +1,5 @@
-id: 60395
-name: dayzerodev
+id: 61589
+name: dayz
 environments:
     production:
         storage: dayzerodev
