@@ -50,3 +50,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('stores-import', [\App\Http\Controllers\StoreController::class, 'import'])->name('store.import');
     Route::post('stores-import', [\App\Http\Controllers\StoreController::class, 'importSave'])->name('store.importSave');
 });
+
+Route::get('redeem',[\App\Http\Controllers\RedeemController::class,'create'])->name('redeem.create');
+Route::post('redeem',[\App\Http\Controllers\RedeemController::class,'store'])->name('redeem.store');
