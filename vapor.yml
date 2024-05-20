@@ -3,7 +3,7 @@ name: dayzerodev
 environments:
     production:
         storage: dayzerodev
-        database: dayzero-prod
+        database: dayzerodev
         memory: 1024
         cli-memory: 512
         runtime: 'php-8.3:al2'
