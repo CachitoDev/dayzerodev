@@ -19,7 +19,12 @@ class CitizenController extends Controller
 
         $citizens = Citizen::query()
             ->when($search, function ($query) use ($search) {
-                return $query->where('id', $search);
+                if (is_numeric($search)) {
+                    $query->where('id', $search);
+                }
+                return $query->orWhere('folio', 'like', $search . '%')
+                    ->orWhere('name', 'like', $search . '%')
+                    ->orWhere('curp', 'like', $search . '%');
             })
             ->orderBy('id', 'desc')
             ->paginate(10);
