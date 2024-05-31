@@ -24,11 +24,15 @@ class CitizenImport implements ToModel, WithHeadingRow, WithBatchInserts, WithCh
         $store = Store::where('number', $row['store'])->first();
         $store_id = $store ? $store->id : null;
 
-        $teamLeader = TeamLeader::firstOrCreate(
-            [
-                'name' => $row['name']
-            ]
-        );
+        $teamLeaderId = null;
+
+        if (!empty($row['team_leader'])) {
+            $teamLeader = TeamLeader::firstOrCreate(
+                ['name' => $row['team_leader']]
+            );
+
+            $teamLeaderId = $teamLeader->id;
+        }
 
         $nameParts = explode(' ', $row['name']);
         $initials = '';
@@ -47,7 +51,7 @@ class CitizenImport implements ToModel, WithHeadingRow, WithBatchInserts, WithCh
             'curp' => $row['curp'],
             'phone' => $row['phone'],
             'store_id' => $store_id,
-            'team_leader_id' => $teamLeader->id,
+            'team_leader_id' => $teamLeaderId,
         ]);
     }
 

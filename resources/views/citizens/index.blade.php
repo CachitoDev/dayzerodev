@@ -42,6 +42,7 @@
                             <th class="px-4 py-3">{{ __('Folio') }}</th>
                             <th class="px-4 py-3">{{ __('Nombre') }}</th>
                             <th class="px-4 py-3">{{ __('CURP') }}</th>
+                            <th class="px-4 py-3">{{ __('Líder') }}</th>
                             <th class="px-4 py-3">{{ __('Estado') }}</th>
                             <th class="px-4 py-3">{{ __('Acciones') }}</th>
                         </tr>
@@ -53,13 +54,16 @@
                                     <a target="_blank" href="{{ $citizen->getImageUrl() }}">{{ $citizen->id }}</a>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $citizen->folio }}
+                                    {{ $citizen->folio ?? '' }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $citizen->name }}
+                                    {{ $citizen->name ?? '' }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $citizen->curp }}
+                                    {{ $citizen->curp ?? '' }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $citizen->teamLeader->name ?? '' }}
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     @if (!$citizen->verified)

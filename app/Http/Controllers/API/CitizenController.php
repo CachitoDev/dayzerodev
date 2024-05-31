@@ -18,13 +18,16 @@ class CitizenController extends Controller
      */
     public function check(Request $request)
     {
-        $curp = $request->input('curp');
-        $citizen = Citizen::where('curp', $curp)->first();
+        $search = $request->input('curp');
 
-        if ($citizen) {
-            return response()->json(['status' => false, 'message' => 'Ya has canjeado tu cupón de descuento.']);
-        } else {
+        $citizen = Citizen::where('folio', $search)->orWhere('curp', $search)->first();
+
+        if (is_null($citizen)) {
             return response()->json(['status' => true, 'message' => 'Felicidades, tienes un cupón de descuento para canjear.']);
+        } elseif ($citizen->folio === $search) {
+            return response()->json(['status' => true, 'message' => 'Folio Valido.']);
+        } else {
+            return response()->json(['status' => false, 'message' => 'Ya has canjeado tu cupón de descuento.']);
         }
     }
 
