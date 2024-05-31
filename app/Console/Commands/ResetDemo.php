@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Citizen;
 use App\Models\Store;
+use App\Models\TeamLeader;
 use Illuminate\Console\Command;
 
 class ResetDemo extends Command
@@ -29,8 +30,8 @@ class ResetDemo extends Command
     {
         echo "Deleting citizens";
         Citizen::query()->delete();
+        TeamLeader::query()->delete();
         Store::query()->delete();
-        echo "Citizens deleted";
-
+        echo "Citizens deleted\n";
     }
 }

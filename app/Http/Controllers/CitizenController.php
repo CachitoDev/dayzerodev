@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidatedSearchRequest;
 use App\Imports\CitizenImport;
+use App\Jobs\ProcessCitizenImport;
 use App\Models\Citizen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CitizenController extends Controller
@@ -56,8 +59,14 @@ class CitizenController extends Controller
     public function importSave(Request $request)
     {
         $file = $request->file('import_file');
+        $fileName = Str::uuid() . '--' . now()->format('y_m_d') . '.csv';
+        $result = Storage::disk('s3')->put($fileName, $file->getContent());
+        if (!$result) {
+            return redirect()->back()->withErrors('Error al subir el archivo');
+        }
 
-        Excel::import(new CitizenImport, $file);
+        ProcessCitizenImport::dispatch($fileName);
+
 
         return redirect()->route('citizens.index')->with('success', 'Tiendas importadas exitosamente.');
     }

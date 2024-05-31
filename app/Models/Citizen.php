@@ -32,6 +32,27 @@ class Citizen extends Model
 
     public function getImageUrl(): string
     {
+        return "";
         return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
+    }
+
+    /**
+     * Generate custom slug.
+     *
+     * @param $name
+     * @return string
+     */
+    public static function generateCustomSlug($name): string
+    {
+        $nameParts = explode(' ', $name);
+        $initials = '';
+
+        foreach ($nameParts as $part) {
+            $initials .= strtoupper(substr($part, 0, 1));
+        }
+
+        $newFolioNumber = strtoupper(substr(md5(uniqid()), 0, 4));
+
+        return $initials . $newFolioNumber;
     }
 }
