@@ -22,7 +22,7 @@ class ValidatedSearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search' => 'nullable|numeric'
+            'search' => ['nullable', 'string']
         ];
     }
 }

@@ -11,7 +11,7 @@ class Citizen extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'curp', 'phone', 'image_path', 'latitude', 'longitude', 'store_id', 'team_leader_id', 'verified'
+        'name', 'folio', 'curp', 'phone', 'image_path', 'latitude', 'longitude', 'store_id', 'team_leader_id', 'verified'
     ];
 
     /**
@@ -20,6 +20,14 @@ class Citizen extends Model
     public function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    /**
+     *
+     */
+    public function teamLeader()
+    {
+        return $this->belongsTo(TeamLeader::class);
     }
 
     public function getImageUrl(): string

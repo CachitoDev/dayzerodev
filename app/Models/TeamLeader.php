@@ -10,4 +10,12 @@ class TeamLeader extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'curp', 'phone'];
+
+    /**
+     *
+     */
+    public function citizens()
+    {
+        return $this->hasMany(Citizen::class);
+    }
 }

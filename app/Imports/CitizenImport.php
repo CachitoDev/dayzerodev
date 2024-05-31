@@ -18,20 +18,40 @@ class CitizenImport implements ToModel, WithHeadingRow, WithBatchInserts, WithCh
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
+
     public function model(array $row)
     {
         $store = Store::where('number', $row['store'])->first();
         $store_id = $store ? $store->id : null;
 
-        $teamLeader = TeamLeader::where('name', $row['team_leader'])->first();
-        $team_leader_id = $teamLeader ? $teamLeader->id : null;
+        $teamLeaderId = null;
+
+        if (!empty($row['team_leader'])) {
+            $teamLeader = TeamLeader::firstOrCreate(
+                ['name' => $row['team_leader']]
+            );
+
+            $teamLeaderId = $teamLeader->id;
+        }
+
+        $nameParts = explode(' ', $row['name']);
+        $initials = '';
+
+        foreach ($nameParts as $part) {
+            $initials .= strtoupper(substr($part, 0, 1));
+        }
+
+        $newFolioNumber = strtoupper(substr(md5(uniqid()), 0, 4));
+
+        $newFolio = $initials . $newFolioNumber;
 
         return new Citizen([
             'name' => $row['name'],
+            'folio' => $newFolio,
             'curp' => $row['curp'],
             'phone' => $row['phone'],
             'store_id' => $store_id,
-            'team_leader_id' => $team_leader_id,
+            'team_leader_id' => $teamLeaderId,
         ]);
     }
 
