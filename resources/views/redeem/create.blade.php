@@ -97,11 +97,11 @@
         async function startCamera() {
             const constraints = {
                 video: {
-                    // facingMode: {
-                    //     exact: 'environment' // 'environment' para la cámara trasera
-                    // },
-                    width: { ideal: 4096 },
-                    height: { ideal: 2160 }
+                    facingMode: {
+                        exact: 'environment' // 'environment' para la cámara trasera
+                    },
+                    // width: { ideal: 4096 },
+                    // height: { ideal: 2160 }
                 }
             };
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
