@@ -53,6 +53,7 @@ class StoreController extends Controller
     {
         $this->validate($request, [
             'name'      => ['required', 'string'],
+            'number'    => ['required', 'numeric'],
             'radius'    => ['required', 'numeric'],
             'latitude'  => ['required', 'numeric'],
             'longitude' => ['required', 'numeric'],
@@ -60,6 +61,7 @@ class StoreController extends Controller
         ]);
 
         $store->update([
+            'number'    => $request->number,
             'name'      => $request->name,
             'latitude'  => $request->latitude,
             'longitude' => $request->longitude,

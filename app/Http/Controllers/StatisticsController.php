@@ -20,12 +20,11 @@ class StatisticsController extends Controller
         foreach ($storesWithCitizensCount as $store) {
             $estimated = $store->estimated;
             $citizensCount = $store->citizens_count;
-
             $verifiedCitizensCount = Citizen::where('store_id', $store->id)
                 ->where('verified', true)
                 ->count();
-
             $storeData = [
+                'id' => $store->id,
                 'number' => $store->number,
                 'name' => $store->name,
                 'estimated' => $estimated,

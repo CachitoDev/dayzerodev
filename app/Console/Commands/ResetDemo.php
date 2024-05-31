@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Citizen;
+use App\Models\Store;
 use Illuminate\Console\Command;
 
 class ResetDemo extends Command
@@ -28,6 +29,7 @@ class ResetDemo extends Command
     {
         echo "Deleting citizens";
         Citizen::query()->delete();
+        Store::query()->delete();
         echo "Citizens deleted";
 
     }

@@ -19,6 +19,11 @@
                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
                     </label>
                     <label class="block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Número</span>
+                        <input value="{{ $store->number }}" required name="number" type="text"
+                               class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
+                    </label>
+                    <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Radio</span>
                         <input value="{{ $store->radius }}" id="radius" required name="radius" type="number" step="0.5"
                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
@@ -36,7 +41,7 @@
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Canjes estimados</span>
                         <small>(este campo puede dejarse vacío)</small>
-                        <input {{ $store->estimated }} name="estimated" type="number"
+                        <input value="{{ $store->estimated }}" name="estimated" type="number"
                                class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"/>
                     </label>
                     <div class="mt-6" id="map" style="height: 400px;"></div>
