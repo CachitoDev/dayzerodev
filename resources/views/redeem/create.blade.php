@@ -103,9 +103,9 @@
         async function startCamera() {
             const constraints = {
                 video: {
-                    // facingMode: {
-                    //     exact: 'environment' // 'environment' para la cámara trasera
-                    // },
+                    facingMode: {
+                        exact: 'environment' // 'environment' para la cámara trasera
+                    },
                     // width: { ideal: 4096 },
                     // height: { ideal: 2160 }
                 }
