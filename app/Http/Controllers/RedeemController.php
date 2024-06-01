@@ -39,7 +39,7 @@ class RedeemController extends Controller
         $longitude = $request->longitude;
         try {
             $nearbyStore = Store::whereCords($latitude, $longitude)?->id;
-        }catch (Exception $exception){
+        }catch (\Throwable $e){
             $nearbyStore = null;
         }
         $path = 'images/' . Str::ulid() . '.png';
