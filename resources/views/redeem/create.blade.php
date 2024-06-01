@@ -4,9 +4,15 @@
             <div class="flex flex-col overflow-y-auto md:flex-row">
                 <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                     <div class="w-full">
-                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+
+                        <h3 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200 text-center">
+                            {{ config('app.name', 'Abarrotes la central') }} promociones
+                        </h3>
+                        <img class="h-auto max-w-lg mx-auto mb-4" style="height: 50px;" src="{{ asset('img/abs/trade-5352599_1280.png') }}" alt="image description">
+                        <h3 class="text-x font-semibold text-gray-700 dark:text-gray-200">
                             Canjear código de promoción
-                        </h1>
+                        </h3>
+
                         @if ($errors->any())
                             <div class="mb-4">
                                 <div class="font-medium text-red-600">Whoops! Something went wrong.</div>
@@ -20,21 +26,21 @@
                         @endif
 
                         <!-- Selector de cámaras -->
-                        <label for="cameras">Selecciona la camara a utilizar:</label>
-                        <select id="cameras"></select>
+{{--                        <label for="cameras">Selecciona la camara a utilizar:</label>--}}
+                        <select hidden="hidden"  id="cameras"></select>
 
                         <!-- Vista previa de la cámara -->
                         <div id="cameraView"></div>
 
                         <div class="text-center mt-5 mb-5">
-                            <img height="250" width="250" id="preview-image" alt="" hidden>
+                            <img height="100" width="250" id="preview-image" alt="" hidden>
                             <img src="" id="show-image">
                         </div>
 
                         <!-- Botón de captura -->
                         <button
                             class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                            id="captureBtn">Capturar
+                            id="captureBtn">Escanear código
                         </button>
 
                         <button
@@ -97,9 +103,9 @@
         async function startCamera() {
             const constraints = {
                 video: {
-                    facingMode: {
-                        exact: 'environment' // 'environment' para la cámara trasera
-                    },
+                    // facingMode: {
+                    //     exact: 'environment' // 'environment' para la cámara trasera
+                    // },
                     // width: { ideal: 4096 },
                     // height: { ideal: 2160 }
                 }

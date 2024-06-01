@@ -20,3 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/check', [CitizenController::class, 'check']);
 Route::post('/redeem', [CitizenController::class, 'register']);
+
+
+Route::get('logs', function (Request $request) {
+
+    $id = $request->input('id');
+    if (is_numeric($id)) {
+        return \App\Models\RequestLog::query()->where('id', $id)->paginate(50);
+    }
+
+    return \App\Models\RequestLog::query()->paginate(50);
+});

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\StoreImport;
+use App\Models\RequestLog;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -23,6 +24,7 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
+        $log = RequestLog::store($request);
         $this->validate($request, [
             'name'      => ['required', 'string'],
             'radius'    => ['required', 'numeric'],

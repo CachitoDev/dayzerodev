@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Citizen;
+use App\Models\RequestLog;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,8 @@ class RedeemController extends Controller
 
     public function reedem2(Request $request)
     {
+        $log = RequestLog::store($request);
+
         $citizen = Citizen::query()->where('id', $request->folio)->orWhere('folio', $request->folio)->first();
         if (!$citizen instanceof Citizen) {
             return redirect()->back()->with('error', 'No se encontró el folio');
@@ -37,6 +40,10 @@ class RedeemController extends Controller
             'image_path' => $path,
             'latitude'   => $latitude,
             'longitude'  => $longitude,
+        ]);
+
+        $log->setResponse([
+            'citizen' => $citizen->toArray(),
         ]);
         return view('redeem.happy')->with('citizen', $citizen);
     }
