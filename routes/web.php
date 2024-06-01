@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     /**
      *
      */
+    Route::get('leaders',function (Request $request){
+       return view('citizens.leaders-index')->with('leaders', \App\Models\TeamLeader::query()->paginate(100));
+    })->name('leaders.index');
     Route::get('citizens', [\App\Http\Controllers\CitizenController::class, 'index'])->name('citizens.index');
     Route::put('citizens/{citizen}', [\App\Http\Controllers\CitizenController::class, 'verifiedCitizen'])->name('citizens.verifiedCitizen');
     Route::get('citizens-import', [\App\Http\Controllers\CitizenController::class, 'import'])->name('citizens.import');
