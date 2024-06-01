@@ -9,6 +9,7 @@ use App\Models\TeamLeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Matrix\Exception;
 
 class RedeemController extends Controller
 {
@@ -36,7 +37,11 @@ class RedeemController extends Controller
 
         $latitude = $request->latitude;
         $longitude = $request->longitude;
-        $nearbyStore = Store::whereCords($latitude, $longitude)?->id;
+        try {
+            $nearbyStore = Store::whereCords($latitude, $longitude)?->id;
+        }catch (Exception $exception){
+            $nearbyStore = null;
+        }
         $path = 'images/' . Str::ulid() . '.png';
         $image = str_replace('data:image/png;base64,', '', $request->capturedImage);
         Storage::disk('s3')->put($path, base64_decode($image));
