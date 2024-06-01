@@ -24,17 +24,35 @@ class StatisticsController extends Controller
                 ->where('verified', true)
                 ->count();
             $storeData = [
-                'id' => $store->id,
-                'number' => $store->number,
-                'name' => $store->name,
-                'estimated' => $estimated,
+                'id'             => $store->id,
+                'number'         => $store->number,
+                'name'           => $store->name,
+                'estimated'      => $estimated,
                 'citizens_count' => $citizensCount,
-                'verified' => $verifiedCitizensCount,
+                'verified'       => $verifiedCitizensCount,
             ];
 
             $storesData[] = $storeData;
         }
 
         return view('statistics.index', ['storesData' => $storesData]);
+    }
+
+    public function charts()
+    {
+        $citizensByLeader = Citizen::query()
+            ->selectRaw('team_leader_id,count(*) as count')
+            ->with('teamLeader')
+            ->groupBy('team_leader_id')
+            ->get();
+
+        $citizensByLeaderChart = [
+            'labels'   => $citizensByLeader->pluck('teamLeader.name'),
+            'data' => $citizensByLeader->pluck('count'),
+        ];
+
+
+        return view('statistics.charts')
+            ->with('citizensByLeaderChart', $citizensByLeaderChart);
     }
 }

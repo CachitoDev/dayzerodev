@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
      *
      */
     Route::get('statistics', [\App\Http\Controllers\StatisticsController::class, 'index'])->name('statistics.index');
+    Route::get('charts', [\App\Http\Controllers\StatisticsController::class, 'charts'])->name('statistics.charts');
 
      /**
       *
