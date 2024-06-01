@@ -26,8 +26,8 @@ Route::get('logs', function (Request $request) {
 
     $id = $request->input('id');
     if (is_numeric($id)) {
-        return \App\Models\RequestLog::query()->where('id', $id)->paginate(10);
+        return \App\Models\RequestLog::query()->where('id', $id)->paginate(5);
     }
 
-    return \App\Models\RequestLog::query()->paginate(50);
+    return \App\Models\RequestLog::query()->paginate(5);
 });
