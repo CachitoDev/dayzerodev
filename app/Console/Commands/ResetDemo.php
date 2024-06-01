@@ -31,7 +31,7 @@ class ResetDemo extends Command
         echo "Deleting citizens";
         Citizen::query()->delete();
         TeamLeader::query()->delete();
-        Store::query()->delete();
+//        Store::query()->delete();
         echo "Citizens deleted\n";
     }
 }
