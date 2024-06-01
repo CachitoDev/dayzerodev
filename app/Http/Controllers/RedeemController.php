@@ -25,6 +25,10 @@ class RedeemController extends Controller
         if (!$citizen instanceof Citizen) {
             return redirect()->back()->with('error', 'No se encontró el folio');
         }
+        if(empty($request->capturedImage)){
+            return redirect()->back()->with('error', 'No se ha capturado la imagen correctamente');
+        }
+
         $latitude = $request->latitude;
         $longitude = $request->longitude;
 
