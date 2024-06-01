@@ -10,6 +10,7 @@
 
         new Chart(ctx, {
             type: 'bar',
+
             data: {
                 labels: @json($citizensByLeaderChart['labels']),
                 datasets: [{
@@ -19,6 +20,7 @@
                 }]
             },
             options: {
+                indexAxis: 'y',
                 scales: {
                     y: {
                         beginAtZero: true
