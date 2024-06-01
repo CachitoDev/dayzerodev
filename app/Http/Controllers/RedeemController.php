@@ -20,6 +20,9 @@ class RedeemController extends Controller
     public function redeem3(Request $request)
     {
         RequestLog::store($request);
+        $this->validate($request, [
+            'folio'          => ['required','integer'],
+        ], ['folio' => 'El folio debe ser numérico']);
 
         $leader = TeamLeader::query()->where('id',$request->folio)->first();
 
