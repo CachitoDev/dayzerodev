@@ -20,6 +20,8 @@ class TeamLeader extends Model
         return $this->hasMany(Citizen::class);
     }
 
+
+
     /**
      * Store a new team leader.
      *
