@@ -23,10 +23,10 @@ class RedeemController extends Controller
 
         $citizen = Citizen::query()->where('id', $request->folio)->orWhere('folio', $request->folio)->first();
         if (!$citizen instanceof Citizen) {
-            return redirect()->back()->with('error', 'No se encontró el folio');
+            return back()->withErrors( 'No se encontró el folio');
         }
         if(empty($request->capturedImage)){
-            return redirect()->back()->with('error', 'No se ha capturado la imagen correctamente');
+            return back()->withErrors('No se ha capturado la imagen correctamente');
         }
 
         $latitude = $request->latitude;
