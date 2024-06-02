@@ -4,7 +4,7 @@ environments:
     production:
         storage: dayzerodev
         database: dayzprod
-        memory: 13888
+        memory: 2048
         cli-memory: 512
         timeout: 20
         runtime: 'php-8.3:al2'
