@@ -28,10 +28,14 @@ class ResetDemo extends Command
      */
     public function handle()
     {
-        echo "Deleting citizens";
-        Citizen::query()->delete();
-        TeamLeader::query()->delete();
-//        Store::query()->delete();
-        echo "Citizens deleted\n";
+
+        Store::query()->update(['radius' => 20]);
+        echo "Setting radius\n";
+
+//        echo "Deleting citizens";
+//        Citizen::query()->delete();
+//        TeamLeader::query()->delete();
+////        Store::query()->delete();
+//        echo "Citizens deleted\n";
     }
 }
